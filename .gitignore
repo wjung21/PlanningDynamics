@@ -1,0 +1,36 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Data/output/logs
+*.txt
+*.log
+*.h5
+*.hdf5
+*.csv
+*.tsv
+*.npy
+*.npz
+*.code-workspace
+*.egg-info/
+*.egg-info
+results/
+output/
+data/
+additional_analyses/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code settings
+.vscode/

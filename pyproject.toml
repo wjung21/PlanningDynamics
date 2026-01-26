@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PlanningDynamics"
+version = "0.1.0"
+description = "Code for Hu and Wallis (2026)"
+authors = [
+    {name = "Eric Hu", email = "ehu7@berkeley.edu"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.26.4",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.6.1",
+    "scipy>=1.13.1",
+    "seaborn>=0.13.2",
+    "tqdm>=4.67.1",
+    "matplotlib >= 3.9.2"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+]
+
+
+[tool.setuptools.packages.find]
+where = ["/media/eric/partition_1/PlanningDynamics/"]
+include = ["PlanningDynamics*"]
+exclude = ["tests*", "docs*"]
