@@ -1,4 +1,4 @@
 # OFC Planning Dynamics
 
 %%
-### Manually install pynwb via pip install -U pynwb
+### Code for Hu and Wallis (2026)
