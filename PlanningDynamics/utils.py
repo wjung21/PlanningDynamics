@@ -25,7 +25,6 @@ def check_overlap(range1, range2):
         return True
     return False
 
-
 def matrix_square_window(spikes, window_size, step_size, zscore=False):
     """
     Computes the mean of spike data over a sliding window.
@@ -55,7 +54,6 @@ def matrix_square_window(spikes, window_size, step_size, zscore=False):
             Y[i, :] = spikes[window_start:window_end, :].mean(axis=0)
     return Y
 
-
 def get_filenames():
     current_directory = os.getcwd()
     get_dir_files = lambda directory: sorted([str(f.resolve()) for f in Path(directory).iterdir() if f.is_file()])
@@ -66,7 +64,6 @@ def get_filenames():
         filename_dict[sbj] = get_dir_files(dir)
     return filename_dict
 
-
 def iterate_subjects(fnames, func):
     res = {"bart":[], "london":[]}
     for sbj in ["bart", "london"]:
@@ -75,7 +72,6 @@ def iterate_subjects(fnames, func):
             if out is not None:
                 res[sbj].append(out)
     return res
-
 
 def get_rts(codes):
     """
@@ -130,8 +126,7 @@ def movmean(A, w, gpu=False):
     else:
         weight_matrix = np.tril(np.triu((np.ones([n, n])), -params[1]), params[0])
         return np.dot(A, weight_matrix)/weight_matrix.sum(axis=0)
-    
-    
+        
 def trial_ts(_d):
     
     evs, ets, eye_times = _d.evs, _d.ets, _d.eye_times
