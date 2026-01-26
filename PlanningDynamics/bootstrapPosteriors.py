@@ -70,7 +70,7 @@ def data_for_choice_model(data):
     y = 4 - y
     
     # get spikes
-    X = data.choice_spikes[:, 500:800, :].mean(axis=1)
+    X = data.choice_spikes[:, 500:, :].mean(axis=1)
     return X, y, data.choice_df.trial.values
 
 def data_for_plan_model(data):
