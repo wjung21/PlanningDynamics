@@ -253,9 +253,7 @@ def compute_posteriors(fname):
     Save bootstrapped posterior samples for specified variables.
 
     This function retrieves data from the specified file and generates
-    bootstrapped posterior samples for the variables: state, choice, and plan.
-    It uses predefined functions to obtain the necessary data for each variable
-    and saves the results to the specified file.
+    bootstrapped posterior samples for the variables: state (choice vs plan), choice value, and plan value.
 
     Parameters:
     fname : str

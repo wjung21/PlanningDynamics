@@ -6,6 +6,11 @@ import os
 import torch
 import collections
 
+def zscore(x, axis=0):
+    x_mean = np.mean(x, axis=axis, keepdims=True)
+    x_std = np.std(x, axis=axis, keepdims=True)
+    return (x - x_mean) / x_std
+
 def distance_to_value(dist, min_value=1):
     return np.clip(4 - dist, min_value, 4)
 
