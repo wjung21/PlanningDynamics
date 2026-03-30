@@ -18,7 +18,11 @@ dependencies = [
     "scipy>=1.13.1",
     "seaborn>=0.13.2",
     "tqdm>=4.67.1",
-    "matplotlib >= 3.9.2"
+    "matplotlib>=3.9.2",
+    "networkx>=3.0",
+    "pynwb>=2.0",
+    "pingouin>=0.5",
+    "torch>=2.0",
 ]
 
 [project.optional-dependencies]
