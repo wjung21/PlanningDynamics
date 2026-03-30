@@ -37,8 +37,7 @@ def get_trial_data(nwbfile, trials, unit_idx):
     
     if trials == "all":
         trials = np.where(trial_df.trialerror <= 2)[0]
-    print("loading trials:")
-    for trial in tqdm(trials):        
+    for trial in trials:        
         neural = trial_df.iloc[trial].timeseries[0].data[:, unit_idx]
         evs = trial_df.iloc[trial].timeseries[1].data
         ets = trial_df.iloc[trial].timeseries[1].timestamps
@@ -81,7 +80,7 @@ def get_choice_data(nwbfile, unit_idx, epoch="action_on", query="(trialerror == 
     
     # Loop through each sample and extract neural data
     # take the moving average of the neural data if window_size > 0
-    for i, _sample in enumerate(tqdm(sample_index)):
+    for i, _sample in enumerate(sample_index):
         choice_data[i, ...] = choice_df["timeseries"][_sample][neural_timeseries_index].data[:, unit_idx]
     choice_df = graph.append_use_tele(choice_df)
     return choice_data, choice_df
@@ -98,6 +97,8 @@ class nwbWrapper:
     def __init__(self, fname, region, to_load="all", choice_query="(trialerror == 0)"):
         self.fname = fname
         self.region = region
+        self.sbj = fname.split("/")[-1].split("_")[0].lower()
+        self.session = fname.split("/")[-1].split("_")[3]
         self.choice_query = choice_query
         if to_load not in ["all", "bhv"]:
             raise ValueError("to_load must be 'all' or 'trial_df'")
@@ -119,11 +120,9 @@ class nwbWrapper:
             self.unitNames, unit_idx = get_unitNames(nwbfile, self.region, drift=2, min_fr=1)
             
             # get data aligned to the onset of each trial
-            print("loading trial data:")
             self.trial_spikes, self.trial_df = get_trial_data(nwbfile, "all", unit_idx)
             
             # get data aligned to the onset of each choice
-            print("loading choice data:")
             self.choice_spikes, self.choice_df = get_choice_data(nwbfile, unit_idx, epoch="action_on", query=self.choice_query)
             
             # load data segmented to fixations
@@ -209,7 +208,7 @@ class nwbWrapper:
                         (fix_df.trialerror == 0) & # only trials that were completed
                         (fix_df.node_on != fix_df.target)] # exclude fixations after the target has been reached
         
-        for trial in tqdm(trials):
+        for trial in trials:
             
             trial_fix = fix_df[(fix_df["trial"] == trial)]
             

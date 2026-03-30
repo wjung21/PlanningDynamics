@@ -26,6 +26,7 @@ venv/
 results/
 output/
 data/
+hpc_results/
 additional_analyses/
 
 # OS files

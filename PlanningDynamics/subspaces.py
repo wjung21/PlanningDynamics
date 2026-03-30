@@ -5,7 +5,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA as sklearnPCA
 from PlanningDynamics import utils
 from PlanningDynamics.dataClass import nwbWrapper
-
 def condition_averaged_spikes(X, y):
     conditions = np.unique(y)
     n_conditions = len(conditions)
@@ -16,7 +15,7 @@ def condition_averaged_spikes(X, y):
         condition_average[i, ...] = np.mean(X[idx, ...], axis=0)
     return condition_average, conditions
 
-def get_spikes_value(fname):
+def get_spikes(fname):
     data = nwbWrapper(fname, region="OFC", to_load="all")      
     y_choice = utils.distance_to_value(data.choice_df.graph_distance.values)
     X_choice = data.choice_spikes
@@ -29,7 +28,6 @@ def get_spikes_value(fname):
     plan_avg, plan_cond = condition_averaged_spikes(X_plan, y_plan)
     return dict(choice_avg=choice_avg, choice_cond=choice_cond, 
                 plan_avg=plan_avg, plan_cond=plan_cond)
-
 
 def scaledPCA(n_components=20):
     return Pipeline([
@@ -84,17 +82,9 @@ class PCA:
         self.X = X.reshape(self.n_cond * self.n_bins, self.n_neurons)
         PCs = self.model.fit_transform(self.X)
         self.PCs = self.reshape_(PCs)
-        #return self.PCs, self.X
 
     def projected_response(self, X):
         scaled_X = self.model["scaler"].transform(X)
         projected_X = self.model["pca"].transform(scaled_X)
         var_explained = np.diag(np.cov(projected_X.T)) / np.diag(np.cov(scaled_X.T)).sum()    
         return dict(projection=projected_X, var_explained=var_explained)
-    
-def cross_model_alignment(model1, model2):
-        Q = model1.model["pca"].components_
-        C = model2.model["pca"].get_covariance()
-        lam = model2.model["pca"].singular_values_
-        alignment = np.diag(Q @ C @ Q.T).sum()/lam.sum()
-        return alignment
