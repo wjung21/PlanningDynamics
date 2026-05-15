@@ -25,7 +25,7 @@ cd PlanningDynamics
 ### 2. Create and activate a conda environment
 
 ```bash
-conda create -n PlanningDynamics python=3.9
+conda create -n PlanningDynamics python=3.10
 conda activate PlanningDynamics
 ```
 
@@ -66,7 +66,7 @@ pip install -e .
 This installs `PlanningDynamics` in editable mode along with all required
 packages declared in `pyproject.toml`:
 
-- `numpy`
+- `numpy==1.26.4` (numpy >= 2.x can causes error in nwbWrapper)
 - `pandas`
 - `scipy`
 - `scikit-learn`
@@ -76,7 +76,7 @@ packages declared in `pyproject.toml`:
 - `pynwb`
 - `pingouin`
 - `tqdm`
-- `torch`
+- `torch==2.2` (torch version compatible with numpy 1.26.x)
 
 ---
 
