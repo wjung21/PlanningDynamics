@@ -4,8 +4,6 @@ import pynwb
 from tqdm import tqdm
 
 from collections import namedtuple
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning) # to ignore numpy DeprecationWarning
 
 
 # namedtuple to hold data for each trial 
@@ -100,7 +98,7 @@ class nwbWrapper:
         self.fname = fname
         self.region = region
         self.sbj = fname.split("/")[-1].split("_")[0].lower()
-        self.session = fname.split("/")[-1].split("_")[-1]
+        self.session = fname.split("/")[-1].split("_")[3]
         self.choice_query = choice_query
         if to_load not in ["all", "bhv"]:
             raise ValueError("to_load must be 'all' or 'trial_df'")
@@ -251,8 +249,8 @@ class nwbWrapper:
 
 
 if __name__ == "__main__":
-    fname = '/Volumes/Workspace/Projects/Data/data_Planning_Hu/london/london_092524.nwb'
-    region= 'OFC'
+    fname = "/media/eric/partition_1/PlanningDynamics/data/london/London_TeleWorld_4x4_101124_spikes.nwb"
+    region = "OFC"
     nwb = nwbWrapper(fname, region)
     print(nwb.unitNames)
     print(nwb.trial_df)
