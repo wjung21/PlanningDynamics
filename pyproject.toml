@@ -12,7 +12,7 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "numpy>=1.26.4",
+    "numpy==1.26.4",
     "pandas>=2.3.3",
     "scikit-learn>=1.6.1",
     "scipy>=1.13.1",
@@ -22,7 +22,7 @@ dependencies = [
     "networkx>=3.0",
     "pynwb>=2.0",
     "pingouin>=0.5",
-    "torch>=2.0",
+    "torch==2.2",
 ]
 
 [project.optional-dependencies]

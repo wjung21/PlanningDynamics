@@ -8,7 +8,8 @@ Code for Hu and Wallis (2026).
 
 ### Requirements
 
-- Python 3.9 or higher
+- Python 3.10
+- Numpy <. 2.x
 - [conda](https://docs.conda.io/en/latest/miniconda.html) (recommended) or a standard Python virtual environment
 
 ---
@@ -25,7 +26,7 @@ cd PlanningDynamics
 ### 2. Create and activate a conda environment
 
 ```bash
-conda create -n PlanningDynamics python=3.9
+conda create -n PlanningDynamics python=3.10
 conda activate PlanningDynamics
 ```
 
@@ -38,9 +39,9 @@ source .venv/bin/activate   # Windows: .venv\Scripts\activate
 
 ---
 
-### 3. Install PyTorch
+### 3. Install PyTorch (Can be skipped)
 PyTorch should be installed separately before the other packages so that the
-correct build (CPU-only or CUDA) is selected for your hardware.
+correct build (CPU-only or CUDA) is selected for your hardware. 
 
 **CPU only:**
 ```bash
@@ -66,7 +67,7 @@ pip install -e .
 This installs `PlanningDynamics` in editable mode along with all required
 packages declared in `pyproject.toml`:
 
-- `numpy`
+- `numpy=1.26.4`
 - `pandas`
 - `scipy`
 - `scikit-learn`
@@ -76,7 +77,7 @@ packages declared in `pyproject.toml`:
 - `pynwb`
 - `pingouin`
 - `tqdm`
-- `torch`
+- `torch=2.2`
 
 ---
 
