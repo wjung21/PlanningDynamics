@@ -4,6 +4,7 @@ from pathlib import Path
 from tqdm import tqdm
 import torch
 import collections
+import os
 
 def zscore(x, axis=0):
     """Standardise x to zero mean and unit variance along `axis`."""
@@ -99,12 +100,12 @@ def matrix_square_window(spikes, window_size, step_size, zscore=False):
             Y[i, :] = spikes[window_start:window_end, :].mean(axis=0)
     return Y
 
-def get_filenames():
+def get_filenames(data_dir):
     """Return a dict {subject: [sorted file paths]} for all NWB data files."""
     get_dir_files = lambda directory: sorted([str(f.resolve()) for f in Path(directory).iterdir() if f.is_file()])
     filename_dict = {}
     for sbj in ["bart", "london"]:
-        dir = "data/" + sbj + "/"
+        dir = os.path.join(data_dir, sbj)
         filename_dict[sbj] = get_dir_files(dir)
     return filename_dict
 

@@ -28,6 +28,9 @@ output/
 data/
 hpc_results/
 additional_analyses/
+/notebooks
+/analysis
+/behavior
 
 # OS files
 .DS_Store
